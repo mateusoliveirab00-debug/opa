@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mr. Oliveira · Cyber Security &amp; Dados</title>
+<meta name="description" content="Estudante de Engenharia da Computação, focado em Cyber Security e a caminho de Engenheiro de Dados. Acesso concedido: seja bem-vindo.">
+<meta property="og:title" content="Mr. Oliveira · Cyber Security &amp; Dados">
+<meta property="og:description" content="No começo o acesso é negado. Curiosidade e persistência abrem qualquer porta.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mateusoliveirab00-debug.github.io/opa/opa.gif">
+<meta name="theme-color" content="#030907">
+<style>
+  :root {
+    --bg: #030907;
+    --panel: #07130e;
+    --line: #0f2a1e;
+    --green: #00ff78;
+    --dim: #009650;
+    --red: #ff3c50;
+    --cyan: #6edcff;
+    --yellow: #ffcd5a;
+    --text: #e6f2e8;
+    --muted: #8fb09b;
+    --mono: ui-monospace, "SFMono-Regular", "DejaVu Sans Mono", Menlo, Consolas, "Courier New", monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+  }
+  body::before { /* vinheta suave para o grid não competir com o texto */
+    content: "";
+    position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 20%, rgba(3,9,7,0) 0%, rgba(3,9,7,.85) 75%);
+  }
+  main { position: relative; max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+
+  /* ---------- janela com o GIF ---------- */
+  .win {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--panel);
+    box-shadow: 0 0 0 1px rgba(0,255,120,.05), 0 20px 60px rgba(0,0,0,.6), 0 0 40px rgba(0,255,120,.06);
+  }
+  .win img { display: block; width: 100%; height: auto; }
+  .hint {
+    margin: 14px 2px 0;
+    color: var(--dim);
+    font-size: 14px;
+    min-height: 24px;
+    transition: opacity .5s ease;
+  }
+  .hint .cursor { display: inline-block; width: .6em; height: 1.05em; background: var(--dim); vertical-align: -2px; margin-left: 3px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- conteúdo revelado depois do GIF ---------- */
+  .js .reveal { opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity .9s ease, transform .9s ease; }
+  .js.revealed .reveal { opacity: 1; transform: none; pointer-events: auto; }
+  .js.revealed .hint { opacity: 0; }
+  .js .reveal.d1 { transition-delay: .05s; }
+  .js .reveal.d2 { transition-delay: .25s; }
+  .js .reveal.d3 { transition-delay: .45s; }
+  .js .reveal.d4 { transition-delay: .65s; }
+
+  .prompt { margin: 44px 0 6px; font-size: 14px; color: var(--green); letter-spacing: .04em; }
+  h1 { margin: 0 0 6px; font-size: clamp(26px, 6vw, 38px); line-height: 1.15; letter-spacing: -.01em; }
+  .roles { margin: 0 0 22px; color: var(--muted); font-size: 15px; }
+  .roles .c { color: var(--cyan); } .roles .r { color: var(--red); } .roles .y { color: var(--yellow); }
+  .lead { margin: 0 0 14px; font-size: 17px; }
+  .lead em { font-style: normal; color: var(--green); }
+  p { margin: 0 0 14px; color: var(--muted); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 26px 0 6px; }
+  .card { border: 1px solid var(--line); background: rgba(7,19,14,.85); border-radius: 8px; padding: 14px 16px; }
+  .card h2 { margin: 0 0 4px; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--green); }
+  .card p { margin: 0; font-size: 14px; }
+
+  .cta { margin-top: 40px; padding: 22px; border: 1px solid var(--dim); border-radius: 10px; background: linear-gradient(180deg, rgba(0,255,120,.06), rgba(0,255,120,.01)); }
+  .cta h2 { margin: 0 0 6px; font-size: 20px; }
+  .cta p { margin-bottom: 18px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-block; padding: 11px 18px; border-radius: 6px;
+    font: inherit; font-size: 15px; text-decoration: none;
+    border: 1px solid var(--green); color: var(--bg); background: var(--green);
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(0,255,120,.25); }
+  .btn.ghost { background: transparent; color: var(--green); }
+  .btn.ghost:hover { background: rgba(0,255,120,.08); box-shadow: none; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  footer { margin-top: 48px; text-align: center; color: var(--dim); font-size: 13px; }
+  .note { margin-top: 10px; font-size: 12px; color: #5f7d6c; text-align: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { transition: none; }
+    .hint .cursor { animation: none; }
+  }
+</style>
+<script>
+  // Sem JavaScript o conteúdo aparece normalmente; com JavaScript ele é revelado
+  // quando a cena "acesso concedido" do GIF começa (~10 s) ou assim que a pessoa
+  // rolar, tocar ou apertar uma tecla — o que vier primeiro.
+  document.documentElement.classList.add('js');
+</script>
+</head>
+<body>
+<main>
+
+  <div class="win">
+    <img src="opa.gif" width="640" height="400" alt="Animação de terminal: acesso negado, uma invasão fictícia e, no fim, acesso concedido ao perfil de Mr. Oliveira.">
+  </div>
+  <div class="hint" id="hint" aria-hidden="true">&gt; carregando perfil<span class="cursor"></span></div>
+
+  <section id="perfil" aria-label="Apresentação">
+    <p class="prompt reveal d1">&gt; acesso concedido</p>
+    <h1 class="reveal d1">Mr. Oliveira</h1>
+    <p class="roles reveal d1">
+      <span class="c">Engenharia da Computação</span> ·
+      <span class="r">Cyber Security</span> ·
+      <span class="y">Futuro Engenheiro de Dados</span>
+    </p>
+
+    <p class="lead reveal d2">No começo, o acesso é negado. Mas <em>curiosidade e persistência</em> abrem qualquer porta — a minha, pelo menos. Seja bem-vindo.</p>
+    <p class="reveal d2">Sou estudante de Engenharia da Computação e aprendo fazendo. Meu foco é segurança da informação, e o objetivo é me tornar Engenheiro de Dados: dados bem tratados só têm valor quando também estão bem protegidos.</p>
+
+    <div class="cards reveal d3">
+      <div class="card"><h2>Cyber Security</h2><p>Entender como sistemas são atacados para aprender a defendê-los.</p></div>
+      <div class="card"><h2>Dados</h2><p>Coletar, organizar e transformar informação em algo útil.</p></div>
+      <div class="card"><h2>Python</h2><p>Minha ferramenta para automatizar, testar ideias e criar projetos.</p></div>
+    </div>
+
+    <div class="cta reveal d4">
+      <h2>Vamos conversar?</h2>
+      <p>Gosto de trocar ideia com quem também está aprendendo ou trabalhando com tecnologia, segurança e dados. Se esse papo é a sua praia, me chama.</p>
+      <div class="btns">
+        <a class="btn" href="https://instagram.com/mt.vky_" target="_blank" rel="noopener noreferrer">Falar no Instagram · @mt.vky_</a>
+        <a class="btn ghost" href="https://github.com/mateusoliveirab00-debug/opa" target="_blank" rel="noopener noreferrer">Ver o código da animação</a>
+      </div>
+    </div>
+
+    <footer class="reveal d4">
+      &gt; sessão encerrada com sucesso_
+      <div class="note">A "invasão" da animação é só visual: nada é invadido de verdade.</div>
+    </footer>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var done = false;
+    function reveal() {
+      if (done) return;
+      done = true;
+      root.classList.add('revealed');
+      ['scroll', 'wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) {
+        window.removeEventListener(ev, reveal);
+      });
+    }
+    // 144 quadros de 70 ms = ~10 s até a cena "acesso concedido"
+    setTimeout(reveal, 10000);
+    ['scroll', 'wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) {
+      window.addEventListener(ev, reveal, { passive: true });
+    });
+  })();
+</script>
+</body>
+</html>
